@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IMC BOAT RACING - Màn hình lớn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="display">
+<header class="topbar">
+  <div class="brand">🏆 IMC BOAT RACING</div>
+  <div id="banner"></div>
+  <button id="btnSound" class="ghost">🔇 Bật âm thanh</button>
+  <div id="timer">--:--</div>
+</header>
+
+<div class="layout">
+  <main id="stage">
+    <div id="game"></div>
+    <div id="early" class="top-banner hidden"></div>
+    <div id="lobby" class="top-banner hidden" style="background:var(--lagoon)">⏳ Chờ ban tổ chức bấm "Bắt đầu"…</div>
+
+    <div id="king" class="overlay hidden">
+      <div>
+        <h2>👑 THUYỀN VƯƠNG</h2>
+        <div>Mọi thuyền dừng lại · vật phẩm bị khoá · mỗi đội chỉ gửi 1 đáp án</div>
+        <div class="big" id="kingQ"></div>
+        <div id="kingTime" style="font-size:32px;font-weight:900;color:var(--sun)"></div>
+        <div class="chips" id="kingChips"></div>
+      </div>
+    </div>
+
+    <div id="over" class="overlay hidden">
+      <div>
+        <h2 id="overTitle"></h2>
+        <div id="overWhy" style="font-size:22px"></div>
+        <div class="podium" id="overRank"></div>
+      </div>
+    </div>
+  </main>
+
+  <aside class="side">
+    <h2>📊 Bảng xếp hạng trực tiếp</h2>
+    <ol id="board"></ol>
+    <h2>📣 Thông báo</h2>
+    <div id="feed"></div>
+  </aside>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/phaser@3.80.1/dist/phaser.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/sfx.js"></script>
+<script src="/js/display.js"></script>
+</body>
+</html>

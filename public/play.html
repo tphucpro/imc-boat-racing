@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<title>IMC BOAT RACING</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="play">
+<header class="ptop">
+  <div><b id="who">Đang kết nối…</b><small id="sub"></small></div>
+  <div id="ptimer">--:--</div>
+</header>
+
+<main class="pmain">
+  <!-- Báo lỗi / bị thay thế -->
+  <section id="fatal" class="center hidden"><div class="emoji">⚠️</div><h2 id="fatalMsg"></h2></section>
+
+  <!-- Chờ bắt đầu -->
+  <section id="wait" class="center hidden">
+    <div class="emoji">⏳</div>
+    <h2>Đã vào thuyền!</h2>
+    <p id="waitInfo"></p>
+    <p class="hint">Giữ nguyên màn hình này. Trận đấu sẽ tự bắt đầu khi ban tổ chức bấm "Bắt đầu".</p>
+  </section>
+
+  <!-- Thông số của đội -->
+  <section id="stats" class="hidden">
+    <div class="stats">
+      <div class="stat"><b id="sRank">-</b><span>Hạng</span></div>
+      <div class="stat"><b id="sEnergy">0</b><span>⚡ Năng lượng</span></div>
+      <div class="stat"><b id="sGold">0</b><span>💰 Vàng</span></div>
+    </div>
+    <div class="bar"><i id="sBar" style="width:0%"></i></div>
+    <div class="effects" id="effects"></div>
+  </section>
+
+  <!-- Người Chèo: câu hỏi + bàn phím -->
+  <section id="qsec" class="hidden">
+    <div class="qbox">
+      <span class="lv" id="qlv"></span>
+      <div class="qt" id="qtext">…</div>
+      <div id="lock" class="lock hidden"></div>
+    </div>
+    <div id="answerBox">
+      <input id="ans" type="text" inputmode="none" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Đáp án">
+      <div class="keypad" id="keypad"></div>
+      <button id="send">Gửi đáp án</button>
+    </div>
+    <p class="hint" id="kingHint"></p>
+  </section>
+
+  <!-- Hoa Tiêu: cửa hàng -->
+  <section id="shop" class="hidden">
+    <label>🎯 Chọn đối thủ (cho ❄️ Băng Sương và ⚓ Mỏ Neo)</label>
+    <div class="rivals" id="rivals"></div>
+    <div class="items" id="items"></div>
+  </section>
+
+  <!-- Kết thúc -->
+  <section id="over" class="center hidden">
+    <div class="emoji">🏆</div>
+    <h2 id="overTitle"></h2>
+    <p id="overInfo"></p>
+  </section>
+</main>
+<div id="toast" class="hidden"></div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/sfx.js"></script>
+<script src="/js/play.js"></script>
+</body>
+</html>

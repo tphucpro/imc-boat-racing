@@ -1,0 +1,14 @@
+# Render Blueprint: đẩy code lên GitHub -> Render > New > Blueprint -> chọn repo
+services:
+  - type: web
+    name: imc-boat-racing
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: ADMIN_KEY
+        generateValue: true   # xem mật khẩu trong Render > Environment

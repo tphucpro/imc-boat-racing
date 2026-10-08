@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IMC BOAT RACING - Quản trị</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <h1>🏆 IMC BOAT RACING</h1><span>Trang quản trị</span>
+  </div>
+
+  <!-- Đăng nhập (chỉ hiện khi server đặt ADMIN_KEY) -->
+  <section id="gate" class="panel hidden">
+    <h2>🔐 Mật khẩu quản trị</h2>
+    <div class="row">
+      <input id="key" type="password" placeholder="Nhập ADMIN_KEY" style="max-width:320px" autocomplete="current-password">
+      <button id="btnLogin">Đăng nhập</button>
+    </div>
+    <div id="gateErr" class="hint" style="color:#ff9b9b"></div>
+  </section>
+
+  <div id="app" class="hidden">
+    <div id="localWarn" class="alert hidden"></div>
+
+    <section class="panel">
+      <h2>1. Điều khiển trận đấu</h2>
+      <div class="row">
+        <span class="status" id="phaseText">…</span>
+        <span id="timeText" class="status"></span>
+        <span style="flex:1"></span>
+        <button id="btnStart">▶ Bắt đầu trận</button>
+        <button id="btnEnd" class="ghost">⏹ Kết thúc ngay</button>
+        <button id="btnReset" class="alt">↺ Làm lại</button>
+      </div>
+      <div class="row" style="margin-top:10px">
+        <a id="lnkDisplay" href="/display.html" target="_blank" rel="noopener"><button class="alt">📺 Mở màn hình lớn</button></a>
+        <button id="btnCopy" class="ghost">📋 Sao chép link màn hình lớn</button>
+        <span id="copyOk" class="hint"></span>
+      </div>
+      <div id="ctrlMsg" class="hint"></div>
+    </section>
+
+    <section class="panel">
+      <h2>2. Thiết lập trận đấu</h2>
+      <div class="grid4">
+        <div><label for="teamCount">Số đội (1–50)</label><input id="teamCount" type="number" min="1" max="50" value="4"></div>
+        <div><label for="minutes">Thời gian (phút)</label><input id="minutes" type="number" min="0.5" max="180" step="0.5" value="10"></div>
+        <div><label for="track">Số đoạn đường</label><input id="track" type="number" min="5" max="300" value="40"></div>
+      </div>
+      <p class="hint">Mỗi đội có 4 Người Chèo + 1 Hoa Tiêu. Cứ 4 năng lượng thuyền tiến 1 đoạn. Số làn đua = số đội, tự động mở rộng.</p>
+      <div class="grid2" style="margin-top:10px">
+        <div>
+          <label for="questions">Câu hỏi (mỗi dòng: Câu hỏi | Đáp án | Độ khó 1-3)</label>
+          <textarea id="questions" spellcheck="false"></textarea>
+          <div class="hint">Độ khó có thể bỏ trống (tự chia dễ → khó). Đáp án số: 1.25 / 1,25 / 5/4 đều được. Dòng bắt đầu bằng # là ghi chú.</div>
+        </div>
+        <div>
+          <label for="king">Câu hỏi 👑 Thuyền Vương (mỗi dòng: Câu hỏi | Đáp án)</label>
+          <textarea id="king" spellcheck="false"></textarea>
+          <div class="hint">Đề chung cho mọi đội. Để trống = không có Thuyền Vương.</div>
+          <label for="names" style="margin-top:10px">Tên đội (tuỳ chọn, mỗi dòng 1 đội)</label>
+          <textarea id="names" spellcheck="false" style="min-height:70px" placeholder="Đội Rồng Đỏ&#10;Đội Hải Âu"></textarea>
+        </div>
+      </div>
+      <div class="row" style="margin-top:12px">
+        <button id="btnSetup">💾 Lưu & tạo đội</button>
+        <span id="setupMsg"></span>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>3. Trạng thái các đội</h2>
+      <div style="overflow-x:auto"><table>
+        <thead><tr><th>Đội</th><th>Hạng</th><th>Tiến độ</th><th>Năng lượng</th><th>Vàng</th><th>Người chèo online</th><th>Hoa tiêu</th></tr></thead>
+        <tbody id="teamRows"></tbody>
+      </table></div>
+    </section>
+
+    <section class="panel">
+      <h2>4. Mã QR cho người chơi</h2>
+      <div class="row no-print">
+        <button id="btnQR" class="alt">Hiện mã QR</button>
+        <button id="btnPrint" class="ghost">🖨 In mã QR</button>
+        <span class="hint">Quét QR → tự vào đúng đội, đúng vai trò. Không cần cùng WiFi.</span>
+      </div>
+      <div id="qrGrid" class="qr-grid" style="margin-top:12px"></div>
+      <details style="margin-top:12px" class="no-print"><summary>Danh sách link (để gửi qua Zalo/Messenger)</summary><div id="linkList" class="mono"></div></details>
+    </section>
+  </div>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/admin.js"></script>
+</body>
+</html>

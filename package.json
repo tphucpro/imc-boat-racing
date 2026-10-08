@@ -1,0 +1,17 @@
+{
+  "name": "imc-boat-racing",
+  "version": "1.0.0",
+  "description": "IMC BOAT RACING - game đua thuyền giải toán multiplayer cho CLB Toán - Tin",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node test/simulate.js"
+  },
+  "engines": { "node": ">=18" },
+  "dependencies": {
+    "express": "^4.19.2",
+    "qrcode": "^1.5.4",
+    "socket.io": "^4.7.5"
+  }
+}
